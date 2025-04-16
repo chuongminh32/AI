@@ -1,0 +1,51 @@
+1. Giới thiệu thuật toán
+Thuật toán AND-OR Search là một phương pháp tìm kiếm có cấu trúc cây, được áp dụng trong các bài toán có thể phân tách thành các quyết định độc lập và đối lập (AND/OR). Thuật toán này giúp giải quyết bài toán 15 quân hậu, trong đó mục tiêu là đặt 15 quân hậu lên bàn cờ sao cho không có hai quân nào tấn công nhau.
+
+Trong bài toán 15 quân hậu, các quân hậu được yêu cầu đặt sao cho không có hai quân nào cùng nằm trên cùng một hàng, cột hoặc đường chéo. Thuật toán AND-OR Search giúp giải quyết bài toán này bằng cách tìm kiếm không gian các trạng thái có thể, đồng thời tối ưu hóa việc đặt các quân hậu sao cho mỗi quyết định là hợp lý.
+
+2. Nguyên lý hoạt động
+Thuật toán AND-OR Search được mô phỏng qua một cây tìm kiếm, trong đó mỗi nút biểu thị một trạng thái có thể của bài toán. Mỗi nhánh của cây thể hiện một quyết định về việc đặt hoặc không đặt quân hậu tại một vị trí cụ thể.
+
+a. Tìm kiếm "AND":
+Khi thuật toán đạt đến một cột (ví dụ, cột 0), nó sẽ thử tất cả các hàng trong cột đó và kiểm tra xem vị trí đó có an toàn không (tức là không có quân hậu nào trên cùng hàng, cùng cột, hoặc cùng đường chéo). Điều này tạo thành một "AND" vì thuật toán phải kiểm tra tất cả các hàng của cột để quyết định xem có thể tiếp tục đi vào các quyết định tiếp theo hay không.
+
+b. Tìm kiếm "OR":
+Khi thuật toán đạt đến một cột, nếu không có vị trí nào an toàn, thuật toán sẽ quay lại và thử các vị trí khác trước đó, tức là tiến hành một quyết định "OR". Việc này giống như một phép thử lựa chọn, nơi thuật toán quay lại tìm kiếm một lựa chọn khác nếu quyết định hiện tại không hợp lý.
+
+3. Ý tưởng thuật toán
+AND-OR Search có thể được chia thành các bước chính như sau:
+
+Khởi tạo trạng thái ban đầu: Thuật toán bắt đầu với một trạng thái trống, trong đó không có quân hậu nào được đặt trên bàn cờ. Trạng thái này được lưu trữ dưới dạng một danh sách các cột, mỗi cột có một giá trị -1, biểu thị rằng không có quân hậu nào được đặt.
+
+Đặt quân hậu: Thuật toán tiếp tục thử đặt quân hậu vào các vị trí hợp lý (tại mỗi cột), kiểm tra tính an toàn của các vị trí này.
+
+Kiểm tra tính hợp lệ của mỗi bước: Mỗi lần đặt quân hậu vào một vị trí, thuật toán kiểm tra xem vị trí này có vi phạm các ràng buộc hay không. Nếu vi phạm (có quân hậu khác trên cùng hàng, cột, hoặc đường chéo), thuật toán sẽ quay lại và thử một vị trí khác.
+
+Kết thúc hoặc quay lui: Nếu quân hậu được đặt hợp lệ tại tất cả các cột, thuật toán sẽ hoàn tất và trả về kết quả. Nếu không thể tìm thấy vị trí hợp lệ, thuật toán quay lại và thử các vị trí trước đó (phương pháp quay lui).
+
+4. Ứng dụng trong bài toán 15 quân hậu
+Trong bài toán 15 quân hậu, thuật toán AND-OR Search sẽ tìm kiếm trên không gian trạng thái của 15 quân hậu trên bàn cờ 15x15. Mỗi bước của thuật toán sẽ là một quyết định "AND" (chọn vị trí an toàn trong mỗi cột) và một quyết định "OR" (quay lại tìm vị trí khác nếu vị trí hiện tại không hợp lệ).
+
+Mỗi bước kiểm tra vị trí đặt quân hậu tại một cột sẽ có hai khả năng: đặt hoặc không đặt quân hậu tại vị trí đó.
+
+Nếu không có vị trí hợp lệ, thuật toán quay lại các bước trước đó để thử lại với các quyết định khác.
+
+Thuật toán dừng khi tìm được một giải pháp hợp lệ hoặc khi không còn các quyết định hợp lệ để thử.
+
+5. Ưu điểm và nhược điểm của thuật toán
+Ưu điểm:
+
+Thuật toán rất mạnh mẽ đối với các bài toán tìm kiếm có cấu trúc cây phân nhánh.
+
+Giải quyết bài toán 15 quân hậu một cách hiệu quả nhờ việc kiểm tra tính hợp lệ từng bước.
+
+Cấu trúc cây tìm kiếm dễ hiểu và triển khai.
+
+Nhược điểm:
+
+Thuật toán có thể gặp phải vấn đề về hiệu suất khi không gian tìm kiếm quá lớn.
+
+Thuật toán không luôn tối ưu trong các trường hợp có nhiều quyết định phải thử.
+
+6. Kết luận
+Thuật toán AND-OR Search là một công cụ mạnh mẽ trong việc giải quyết các bài toán tìm kiếm có cấu trúc quyết định như bài toán 15 quân hậu. Mặc dù có thể gặp khó khăn về hiệu suất khi không gian tìm kiếm quá lớn, nhưng nó vẫn là một phương pháp khả thi và dễ triển khai để giải quyết các bài toán tương tự. Sự kết hợp giữa các quyết định "AND" và "OR" giúp thuật toán linh hoạt và mạnh mẽ trong việc tìm kiếm các giải pháp hợp lý.
